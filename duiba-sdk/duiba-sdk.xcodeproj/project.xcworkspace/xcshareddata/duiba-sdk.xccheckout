@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E4020608-3A4B-4960-A94B-682039C81BFA</string>
+	<key>IDESourceControlProjectName</key>
+	<string>duiba-sdk</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>653ADC73-5D79-406F-B7D8-AF11F00B7771</key>
+		<string>https://github.com/duiba/iOS-sdk.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>duiba-sdk/duiba-sdk.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>653ADC73-5D79-406F-B7D8-AF11F00B7771</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/duiba/iOS-sdk.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>653ADC73-5D79-406F-B7D8-AF11F00B7771</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>653ADC73-5D79-406F-B7D8-AF11F00B7771</string>
+			<key>IDESourceControlWCCName</key>
+			<string>duiba-iOS-sdk</string>
+		</dict>
+	</array>
+</dict>
+</plist>

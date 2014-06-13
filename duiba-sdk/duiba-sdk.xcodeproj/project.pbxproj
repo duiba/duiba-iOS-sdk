@@ -1,0 +1,518 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3EF98D96194AD83300634C41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF98D95194AD83300634C41 /* Foundation.framework */; };
+		3EF98D98194AD83300634C41 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF98D97194AD83300634C41 /* CoreGraphics.framework */; };
+		3EF98D9A194AD83400634C41 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF98D99194AD83400634C41 /* UIKit.framework */; };
+		3EF98DA0194AD83400634C41 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EF98D9E194AD83400634C41 /* InfoPlist.strings */; };
+		3EF98DA2194AD83400634C41 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF98DA1194AD83400634C41 /* main.m */; };
+		3EF98DA6194AD83400634C41 /* CreditAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF98DA5194AD83400634C41 /* CreditAppDelegate.m */; };
+		3EF98DA9194AD83400634C41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EF98DA7194AD83400634C41 /* Main.storyboard */; };
+		3EF98DAC194AD83400634C41 /* CreditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF98DAB194AD83400634C41 /* CreditViewController.m */; };
+		3EF98DAE194AD83400634C41 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EF98DAD194AD83400634C41 /* Images.xcassets */; };
+		3EF98DB5194AD83400634C41 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF98DB4194AD83400634C41 /* XCTest.framework */; };
+		3EF98DB6194AD83400634C41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF98D95194AD83300634C41 /* Foundation.framework */; };
+		3EF98DB7194AD83400634C41 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF98D99194AD83400634C41 /* UIKit.framework */; };
+		3EF98DBF194AD83400634C41 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EF98DBD194AD83400634C41 /* InfoPlist.strings */; };
+		3EF98DC1194AD83400634C41 /* duiba_sdkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF98DC0194AD83400634C41 /* duiba_sdkTests.m */; };
+		3EF98DD1194AD88600634C41 /* CreditNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF98DCC194AD88600634C41 /* CreditNavigationController.m */; };
+		3EF98DD2194AD88600634C41 /* CreditWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF98DCE194AD88600634C41 /* CreditWebView.m */; };
+		3EF98DD3194AD88600634C41 /* CreditWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF98DD0194AD88600634C41 /* CreditWebViewController.m */; };
+		3EF98DD8194AD92400634C41 /* enter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF98DD5194AD92400634C41 /* enter@2x.png */; };
+		3EF98DD9194AD92400634C41 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF98DD6194AD92400634C41 /* logo@2x.png */; };
+		3EF98DDA194AD92400634C41 /* snapshot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF98DD7194AD92400634C41 /* snapshot@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3EF98DB8194AD83400634C41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3EF98D8A194AD83300634C41 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3EF98D91194AD83300634C41;
+			remoteInfo = "duiba-sdk";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3EF98D92194AD83300634C41 /* duiba-sdk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "duiba-sdk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EF98D95194AD83300634C41 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3EF98D97194AD83300634C41 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3EF98D99194AD83400634C41 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3EF98D9D194AD83400634C41 /* duiba-sdk-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "duiba-sdk-Info.plist"; sourceTree = "<group>"; };
+		3EF98D9F194AD83400634C41 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3EF98DA1194AD83400634C41 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3EF98DA3194AD83400634C41 /* duiba-sdk-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "duiba-sdk-Prefix.pch"; sourceTree = "<group>"; };
+		3EF98DA4194AD83400634C41 /* CreditAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreditAppDelegate.h; sourceTree = "<group>"; };
+		3EF98DA5194AD83400634C41 /* CreditAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreditAppDelegate.m; sourceTree = "<group>"; };
+		3EF98DA8194AD83400634C41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3EF98DAA194AD83400634C41 /* CreditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreditViewController.h; sourceTree = "<group>"; };
+		3EF98DAB194AD83400634C41 /* CreditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreditViewController.m; sourceTree = "<group>"; };
+		3EF98DAD194AD83400634C41 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3EF98DB3194AD83400634C41 /* duiba-sdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "duiba-sdkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EF98DB4194AD83400634C41 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		3EF98DBC194AD83400634C41 /* duiba-sdkTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "duiba-sdkTests-Info.plist"; sourceTree = "<group>"; };
+		3EF98DBE194AD83400634C41 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3EF98DC0194AD83400634C41 /* duiba_sdkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = duiba_sdkTests.m; sourceTree = "<group>"; };
+		3EF98DCB194AD88600634C41 /* CreditNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreditNavigationController.h; path = sdk/CreditNavigationController.h; sourceTree = "<group>"; };
+		3EF98DCC194AD88600634C41 /* CreditNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreditNavigationController.m; path = sdk/CreditNavigationController.m; sourceTree = "<group>"; };
+		3EF98DCD194AD88600634C41 /* CreditWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreditWebView.h; path = sdk/CreditWebView.h; sourceTree = "<group>"; };
+		3EF98DCE194AD88600634C41 /* CreditWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreditWebView.m; path = sdk/CreditWebView.m; sourceTree = "<group>"; };
+		3EF98DCF194AD88600634C41 /* CreditWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreditWebViewController.h; path = sdk/CreditWebViewController.h; sourceTree = "<group>"; };
+		3EF98DD0194AD88600634C41 /* CreditWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreditWebViewController.m; path = sdk/CreditWebViewController.m; sourceTree = "<group>"; };
+		3EF98DD5194AD92400634C41 /* enter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "enter@2x.png"; path = "image/enter@2x.png"; sourceTree = "<group>"; };
+		3EF98DD6194AD92400634C41 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo@2x.png"; path = "image/logo@2x.png"; sourceTree = "<group>"; };
+		3EF98DD7194AD92400634C41 /* snapshot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "snapshot@2x.png"; path = "image/snapshot@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3EF98D8F194AD83300634C41 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EF98D98194AD83300634C41 /* CoreGraphics.framework in Frameworks */,
+				3EF98D9A194AD83400634C41 /* UIKit.framework in Frameworks */,
+				3EF98D96194AD83300634C41 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EF98DB0194AD83400634C41 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EF98DB5194AD83400634C41 /* XCTest.framework in Frameworks */,
+				3EF98DB7194AD83400634C41 /* UIKit.framework in Frameworks */,
+				3EF98DB6194AD83400634C41 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3EF98D89194AD83300634C41 = {
+			isa = PBXGroup;
+			children = (
+				3EF98D9B194AD83400634C41 /* duiba-sdk */,
+				3EF98DBA194AD83400634C41 /* duiba-sdkTests */,
+				3EF98D94194AD83300634C41 /* Frameworks */,
+				3EF98D93194AD83300634C41 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3EF98D93194AD83300634C41 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3EF98D92194AD83300634C41 /* duiba-sdk.app */,
+				3EF98DB3194AD83400634C41 /* duiba-sdkTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3EF98D94194AD83300634C41 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3EF98D95194AD83300634C41 /* Foundation.framework */,
+				3EF98D97194AD83300634C41 /* CoreGraphics.framework */,
+				3EF98D99194AD83400634C41 /* UIKit.framework */,
+				3EF98DB4194AD83400634C41 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3EF98D9B194AD83400634C41 /* duiba-sdk */ = {
+			isa = PBXGroup;
+			children = (
+				3EF98DD4194AD90500634C41 /* image */,
+				3EF98DCA194AD84000634C41 /* sdk */,
+				3EF98DA4194AD83400634C41 /* CreditAppDelegate.h */,
+				3EF98DA5194AD83400634C41 /* CreditAppDelegate.m */,
+				3EF98DA7194AD83400634C41 /* Main.storyboard */,
+				3EF98DAA194AD83400634C41 /* CreditViewController.h */,
+				3EF98DAB194AD83400634C41 /* CreditViewController.m */,
+				3EF98DAD194AD83400634C41 /* Images.xcassets */,
+				3EF98D9C194AD83400634C41 /* Supporting Files */,
+			);
+			path = "duiba-sdk";
+			sourceTree = "<group>";
+		};
+		3EF98D9C194AD83400634C41 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3EF98D9D194AD83400634C41 /* duiba-sdk-Info.plist */,
+				3EF98D9E194AD83400634C41 /* InfoPlist.strings */,
+				3EF98DA1194AD83400634C41 /* main.m */,
+				3EF98DA3194AD83400634C41 /* duiba-sdk-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3EF98DBA194AD83400634C41 /* duiba-sdkTests */ = {
+			isa = PBXGroup;
+			children = (
+				3EF98DC0194AD83400634C41 /* duiba_sdkTests.m */,
+				3EF98DBB194AD83400634C41 /* Supporting Files */,
+			);
+			path = "duiba-sdkTests";
+			sourceTree = "<group>";
+		};
+		3EF98DBB194AD83400634C41 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3EF98DBC194AD83400634C41 /* duiba-sdkTests-Info.plist */,
+				3EF98DBD194AD83400634C41 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3EF98DCA194AD84000634C41 /* sdk */ = {
+			isa = PBXGroup;
+			children = (
+				3EF98DCB194AD88600634C41 /* CreditNavigationController.h */,
+				3EF98DCC194AD88600634C41 /* CreditNavigationController.m */,
+				3EF98DCD194AD88600634C41 /* CreditWebView.h */,
+				3EF98DCE194AD88600634C41 /* CreditWebView.m */,
+				3EF98DCF194AD88600634C41 /* CreditWebViewController.h */,
+				3EF98DD0194AD88600634C41 /* CreditWebViewController.m */,
+			);
+			name = sdk;
+			sourceTree = "<group>";
+		};
+		3EF98DD4194AD90500634C41 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				3EF98DD5194AD92400634C41 /* enter@2x.png */,
+				3EF98DD6194AD92400634C41 /* logo@2x.png */,
+				3EF98DD7194AD92400634C41 /* snapshot@2x.png */,
+			);
+			name = image;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3EF98D91194AD83300634C41 /* duiba-sdk */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3EF98DC4194AD83400634C41 /* Build configuration list for PBXNativeTarget "duiba-sdk" */;
+			buildPhases = (
+				3EF98D8E194AD83300634C41 /* Sources */,
+				3EF98D8F194AD83300634C41 /* Frameworks */,
+				3EF98D90194AD83300634C41 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "duiba-sdk";
+			productName = "duiba-sdk";
+			productReference = 3EF98D92194AD83300634C41 /* duiba-sdk.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3EF98DB2194AD83400634C41 /* duiba-sdkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3EF98DC7194AD83400634C41 /* Build configuration list for PBXNativeTarget "duiba-sdkTests" */;
+			buildPhases = (
+				3EF98DAF194AD83400634C41 /* Sources */,
+				3EF98DB0194AD83400634C41 /* Frameworks */,
+				3EF98DB1194AD83400634C41 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3EF98DB9194AD83400634C41 /* PBXTargetDependency */,
+			);
+			name = "duiba-sdkTests";
+			productName = "duiba-sdkTests";
+			productReference = 3EF98DB3194AD83400634C41 /* duiba-sdkTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3EF98D8A194AD83300634C41 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Credit;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = duiba;
+				TargetAttributes = {
+					3EF98DB2194AD83400634C41 = {
+						TestTargetID = 3EF98D91194AD83300634C41;
+					};
+				};
+			};
+			buildConfigurationList = 3EF98D8D194AD83300634C41 /* Build configuration list for PBXProject "duiba-sdk" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3EF98D89194AD83300634C41;
+			productRefGroup = 3EF98D93194AD83300634C41 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3EF98D91194AD83300634C41 /* duiba-sdk */,
+				3EF98DB2194AD83400634C41 /* duiba-sdkTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3EF98D90194AD83300634C41 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EF98DD9194AD92400634C41 /* logo@2x.png in Resources */,
+				3EF98DAE194AD83400634C41 /* Images.xcassets in Resources */,
+				3EF98DDA194AD92400634C41 /* snapshot@2x.png in Resources */,
+				3EF98DA0194AD83400634C41 /* InfoPlist.strings in Resources */,
+				3EF98DA9194AD83400634C41 /* Main.storyboard in Resources */,
+				3EF98DD8194AD92400634C41 /* enter@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EF98DB1194AD83400634C41 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EF98DBF194AD83400634C41 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3EF98D8E194AD83300634C41 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EF98DD2194AD88600634C41 /* CreditWebView.m in Sources */,
+				3EF98DA2194AD83400634C41 /* main.m in Sources */,
+				3EF98DA6194AD83400634C41 /* CreditAppDelegate.m in Sources */,
+				3EF98DD1194AD88600634C41 /* CreditNavigationController.m in Sources */,
+				3EF98DD3194AD88600634C41 /* CreditWebViewController.m in Sources */,
+				3EF98DAC194AD83400634C41 /* CreditViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EF98DAF194AD83400634C41 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EF98DC1194AD83400634C41 /* duiba_sdkTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3EF98DB9194AD83400634C41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3EF98D91194AD83300634C41 /* duiba-sdk */;
+			targetProxy = 3EF98DB8194AD83400634C41 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3EF98D9E194AD83400634C41 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EF98D9F194AD83400634C41 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3EF98DA7194AD83400634C41 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EF98DA8194AD83400634C41 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3EF98DBD194AD83400634C41 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EF98DBE194AD83400634C41 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3EF98DC2194AD83400634C41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3EF98DC3194AD83400634C41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3EF98DC5194AD83400634C41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "duiba-sdk/duiba-sdk-Prefix.pch";
+				INFOPLIST_FILE = "duiba-sdk/duiba-sdk-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3EF98DC6194AD83400634C41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "duiba-sdk/duiba-sdk-Prefix.pch";
+				INFOPLIST_FILE = "duiba-sdk/duiba-sdk-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		3EF98DC8194AD83400634C41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/duiba-sdk.app/duiba-sdk";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "duiba-sdk/duiba-sdk-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "duiba-sdkTests/duiba-sdkTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		3EF98DC9194AD83400634C41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/duiba-sdk.app/duiba-sdk";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "duiba-sdk/duiba-sdk-Prefix.pch";
+				INFOPLIST_FILE = "duiba-sdkTests/duiba-sdkTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3EF98D8D194AD83300634C41 /* Build configuration list for PBXProject "duiba-sdk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EF98DC2194AD83400634C41 /* Debug */,
+				3EF98DC3194AD83400634C41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3EF98DC4194AD83400634C41 /* Build configuration list for PBXNativeTarget "duiba-sdk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EF98DC5194AD83400634C41 /* Debug */,
+				3EF98DC6194AD83400634C41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3EF98DC7194AD83400634C41 /* Build configuration list for PBXNativeTarget "duiba-sdkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EF98DC8194AD83400634C41 /* Debug */,
+				3EF98DC9194AD83400634C41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3EF98D8A194AD83300634C41 /* Project object */;
+}
