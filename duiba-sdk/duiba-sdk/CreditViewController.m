@@ -43,7 +43,7 @@
 }
 
 -(void)enter{
-    CreditWebViewController *web=[[CreditWebViewController alloc]initWithUrl:@"http://www.dui88.com/test/innerRedirectSAdfjiosadf"];
+    CreditWebViewController *web=[[CreditWebViewController alloc]initWithUrl:@"http://baidu.com"];//实际中需要改为带签名的地址
     
     [self.navigationController pushViewController:web animated:YES];
     
