@@ -46,9 +46,17 @@
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     [btn setImage:[UIImage imageNamed:@"enter"] forState:UIControlStateNormal];
     btn.frame=CGRectMake(320-40-70, 60, 70, 27);
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 1, 0, 0, 1 });
+    [btn.layer setBorderColor:colorref];
+    [btn.layer setBorderWidth:2.0];
     [self.view addSubview:btn];
     
     [btn addTarget:self action:@selector(enter) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backItem];
+    
 }
 
 -(void)enter{

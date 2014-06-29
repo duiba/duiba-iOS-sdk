@@ -40,7 +40,10 @@
     self.webView.webDelegate=self;
     self.webView.refreshDelegate=self.parentRefreshDelegate;
     
-    self.navigationItem.leftBarButtonItem=nil;
+    self.title=@"加载中";
+    
+    
+    
     
     
 }
@@ -55,6 +58,11 @@
 
 -(void)newPage:(NSURLRequest *)request{
     CreditWebViewController *vc=[[CreditWebViewController alloc]initWithUrl:request andDelegate:self];
+    
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backItem];
+    
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)back{
