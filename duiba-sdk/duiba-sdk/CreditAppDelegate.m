@@ -19,7 +19,9 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    self.window.rootViewController=[[CreditNavigationController alloc]initWithRootViewController:[[CreditViewController alloc] init]];
+    CreditNavigationController *nav=[[CreditNavigationController alloc]initWithRootViewController:[[CreditViewController alloc] init]];
+    [nav setNavColorStyle:[UIColor colorWithRed:195/255.0 green:0 blue:19/255.0 alpha:1]];
+    self.window.rootViewController=nav;
     
     [application setStatusBarHidden:NO];
     [application setStatusBarStyle:UIStatusBarStyleLightContent];

@@ -26,15 +26,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationBar.barTintColor=[UIColor colorWithRed:195/255.0 green:0 blue:19/255.0 alpha:1];
     
-    self.navigationBar.tintColor=[UIColor whiteColor];
+    
+    
 
     
     [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]];
     
     
 }
+
+-(void)setNavColorStyle:(UIColor *)color{
+    if([self.navigationBar respondsToSelector:@selector(setBarTintColor:)]){
+        self.navigationBar.barTintColor=color;
+        self.navigationBar.tintColor=[UIColor whiteColor];
+    }else{
+        self.navigationBar.tintColor=color;
+    }
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {

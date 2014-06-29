@@ -10,5 +10,8 @@
 
 @interface CreditNavigationController : UINavigationController
 
-    
+
+
+-(void)setNavColorStyle:(UIColor*)color;
+
 @end
