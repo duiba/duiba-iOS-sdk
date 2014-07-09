@@ -32,9 +32,9 @@
 }
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     NSString *url=[request.URL absoluteString];
-    if(![url isEqualToString:self.url]){
         if([url rangeOfString:@"dbnewopen"].location!=NSNotFound){
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"dbnewopen" object:nil userInfo:[NSDictionary dictionaryWithObject:[request.URL absoluteString] forKey:@"url"]];
+            url=[url substringToIndex:url.length-9];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"dbnewopen" object:nil userInfo:[NSDictionary dictionaryWithObject:url forKey:@"url"]];
             return NO;
         }else if([url rangeOfString:@"dbbackrefresh"].location!=NSNotFound){
             
@@ -54,7 +54,6 @@
             
             
         }
-    }
     
     return YES;
 }
