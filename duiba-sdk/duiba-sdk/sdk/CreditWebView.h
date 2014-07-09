@@ -9,22 +9,9 @@
 #import <UIKit/UIKit.h>
 
 
-@protocol CreditWebDelegate <UIWebViewDelegate>
-
--(void)newPage:(NSURLRequest*)request;
--(void)back;
-
-@end
-
-@protocol CreditRefreshDelegate <NSObject>
-
--(void)refreshParentPage:(NSURLRequest*)request;
-
-@end
 
 @interface CreditWebView : UIWebView<UIWebViewDelegate>
-@property (nonatomic,strong) id<CreditWebDelegate> webDelegate;
-@property (nonatomic,strong) id<CreditRefreshDelegate> refreshDelegate;
+@property (nonatomic,strong) id<UIWebViewDelegate> webDelegate;
 
 -(id)initWithFrame:(CGRect)frame andUrl:(NSString*)url;
 @end

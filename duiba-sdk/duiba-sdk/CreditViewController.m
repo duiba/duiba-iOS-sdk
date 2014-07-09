@@ -61,7 +61,7 @@
 
 -(void)enter{
     
-    CreditWebViewController *web=[[CreditWebViewController alloc]initWithUrl:@"http://www.dui88.com/test/demoRedirectSAdfjosfdjdsa"];//实际中需要改为带签名的地址
+    CreditWebViewController *web=[[CreditWebViewController alloc]initWithUrl:@"http://www.dui88.com/test/innerRedirectijdsfghnsakdhfuhbdssd"];//实际中需要改为带签名的地址
     
     //如果已经有UINavigationContoller了，就 创建出一个 CreditWebViewController 然后 push 进去
     [self.navigationController pushViewController:web animated:YES];

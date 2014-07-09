@@ -31,43 +31,36 @@
     return self;
 }
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-    if(self.webDelegate!=nil){
-        if(![[[request URL] absoluteString] isEqualToString:self.url]){
-            if([[request.URL description]rangeOfString:@"dbnewopen"].location!=NSNotFound){
-                [self.webDelegate newPage:request];
-                return NO;
-            }else if([[request.URL description]rangeOfString:@"dbbackrefresh"].location!=NSNotFound){
-                if(self.refreshDelegate !=nil){
-                    [self.webDelegate back];
-                    [self.refreshDelegate refreshParentPage:request];
-                    return NO;
-                }
-            }else{
-                NSURL *requestURL =[request URL];
-                NSURL *current=[NSURL URLWithString:self.url];
-                if(![[requestURL host]hasSuffix:@"duiba.com.cn"] && ![[requestURL host]isEqualToString:[current host]]){
-                    return ![ [ UIApplication sharedApplication ] openURL:requestURL ];
-                }
-                
-
+    if(![[[request URL] absoluteString] isEqualToString:self.url]){
+        if([[request.URL description]rangeOfString:@"dbnewopen"].location!=NSNotFound){
+            NSLog(@"newopen");
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"dbnewopen" object:nil userInfo:[NSDictionary dictionaryWithObject:[request.URL absoluteString] forKey:@"url"]];
+            return NO;
+        }else if([[request.URL description]rangeOfString:@"dbbackrefresh"].location!=NSNotFound){
+            NSString *url=[request.URL absoluteString];
+            url=[url substringToIndex:url.length-13];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"dbbackrefresh" object:nil userInfo:[NSDictionary dictionaryWithObject:url  forKey:@"url"]];
+            return  NO;
+        }else{
+            NSURL *requestURL =[request URL];
+            NSURL *current=[NSURL URLWithString:self.url];
+            if(![[requestURL host]hasSuffix:@"duiba.com.cn"] && ![[requestURL host]isEqualToString:[current host]]){
+                return ![ [ UIApplication sharedApplication ] openURL:requestURL ];
             }
+            
+            
         }
-        
     }
     
     return YES;
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-    if(self.webDelegate!=nil){
-        [self.webDelegate webView:webView didFailLoadWithError:error];
-    }
+
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
-    [self.webDelegate webViewDidFinishLoad:webView];
 }
 -(void)webViewDidStartLoad:(UIWebView *)webView{
-    [self.webDelegate webViewDidStartLoad:webView];
 }
 
 

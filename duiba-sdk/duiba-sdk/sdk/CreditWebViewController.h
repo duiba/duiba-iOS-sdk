@@ -12,6 +12,6 @@
 @interface CreditWebViewController : UIViewController
 
 -(id)initWithUrl:(NSString*)url;
--(id)initWithUrl:(NSURLRequest*)request andDelegate:(id<CreditRefreshDelegate>)creditDelegate;
+-(id)initWithRequest:(NSURLRequest*)request;
 
 @end
