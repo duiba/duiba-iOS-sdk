@@ -31,15 +31,20 @@
     return self;
 }
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-    if(![[[request URL] absoluteString] isEqualToString:self.url]){
-        if([[request.URL description]rangeOfString:@"dbnewopen"].location!=NSNotFound){
+    NSString *url=[request.URL absoluteString];
+    if(![url isEqualToString:self.url]){
+        if([url rangeOfString:@"dbnewopen"].location!=NSNotFound){
             [[NSNotificationCenter defaultCenter]postNotificationName:@"dbnewopen" object:nil userInfo:[NSDictionary dictionaryWithObject:[request.URL absoluteString] forKey:@"url"]];
             return NO;
-        }else if([[request.URL description]rangeOfString:@"dbbackrefresh"].location!=NSNotFound){
-            NSString *url=[request.URL absoluteString];
+        }else if([url rangeOfString:@"dbbackrefresh"].location!=NSNotFound){
+            
             url=[url substringToIndex:url.length-13];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"dbbackrefresh" object:nil userInfo:[NSDictionary dictionaryWithObject:url  forKey:@"url"]];
             return  NO;
+        }else if([url rangeOfString:@"dbbackroot"].location!=NSNotFound){
+            url=[url substringToIndex:url.length-10];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"dbbackroot" object:nil userInfo:[NSDictionary dictionaryWithObject:url forKey:@"url"]];
+            return NO;
         }else{
             NSURL *requestURL =[request URL];
             NSURL *current=[NSURL URLWithString:self.url];
@@ -55,11 +60,13 @@
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-
+    [self.webDelegate webView:webView didFailLoadWithError:error];
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
+    [self.webDelegate webViewDidFinishLoad:webView];
 }
 -(void)webViewDidStartLoad:(UIWebView *)webView{
+    [self.webDelegate webViewDidStartLoad:webView];
 }
 
 
