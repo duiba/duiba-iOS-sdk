@@ -45,9 +45,11 @@
             }else{
                 NSURL *requestURL =[request URL];
                 NSURL *current=[NSURL URLWithString:self.url];
-                if(![[requestURL host]isEqualToString:[current host]]){
+                if(![[requestURL host]hasSuffix:@"duiba.com.cn"] && ![[requestURL host]isEqualToString:[current host]]){
                     return ![ [ UIApplication sharedApplication ] openURL:requestURL ];
                 }
+                
+
             }
         }
         
