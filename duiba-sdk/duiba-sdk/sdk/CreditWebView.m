@@ -33,7 +33,6 @@
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     if(![[[request URL] absoluteString] isEqualToString:self.url]){
         if([[request.URL description]rangeOfString:@"dbnewopen"].location!=NSNotFound){
-            NSLog(@"newopen");
             [[NSNotificationCenter defaultCenter]postNotificationName:@"dbnewopen" object:nil userInfo:[NSDictionary dictionaryWithObject:[request.URL absoluteString] forKey:@"url"]];
             return NO;
         }else if([[request.URL description]rangeOfString:@"dbbackrefresh"].location!=NSNotFound){
