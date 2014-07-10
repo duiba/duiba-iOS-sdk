@@ -61,13 +61,20 @@
 
 -(void)enter{
     
+    //
+    //  PushViewController的方式
+    //  如果已经有UINavigationContoller了，就 创建出一个 CreditWebViewController 然后 push 进去
+    //
+    //
     CreditWebViewController *web=[[CreditWebViewController alloc]initWithUrl:@"http://www.duiba.com.cn/test/demoRedirectSAdfjosfdjdsa"];//实际中需要改为带签名的地址
-    
-    //如果已经有UINavigationContoller了，就 创建出一个 CreditWebViewController 然后 push 进去
     [self.navigationController pushViewController:web animated:YES];
     
-    //如果没有UINavigationController，就创建一个 CreditNavigationController 然后 present 出来
+    //
+    //  PresentViewController 的方式
+    //  如果没有UINavigationController，就创建一个 CreditNavigationController 然后 present 出来
+    //
     /*
+    CreditWebViewController *web=[[CreditWebViewController alloc]initWithUrlByPresent:@"http://www.duiba.com.cn/test/demoRedirectSAdfjosfdjdsa"]
     CreditNavigationController *nav=[[CreditNavigationController alloc]initWithRootViewController:web];
     [nav setNavColorStyle:[UIColor colorWithRed:195/255.0 green:0 blue:19/255.0 alpha:1]];
     [self presentViewController:nav animated:YES completion:nil];

@@ -29,6 +29,12 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldBackRoot:) name:@"dbbackroot" object:nil];
     return self;
 }
+-(id)initWithUrlByPresent:(NSString *)url{
+    self=[self initWithUrl:url];
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(dismiss)];
+    self.navigationItem.leftBarButtonItem=leftButton;
+    return self;
+}
 -(id)initWithRequest:(NSURLRequest *)request{
     self=[super init];
     self.request=request;
@@ -37,6 +43,9 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldNewOpen:) name:@"dbnewopen" object:nil];
     
     return self;
+}
+-(void)dismiss{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)shouldBackRoot:(NSNotificationCenter*)notification{
     [self.navigationController popToViewController:self animated:YES];
@@ -66,9 +75,7 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
--(void)viewWillAppear:(BOOL)animated{
-    
-}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

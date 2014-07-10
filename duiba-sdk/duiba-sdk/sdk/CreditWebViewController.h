@@ -12,6 +12,7 @@
 @interface CreditWebViewController : UIViewController
 
 -(id)initWithUrl:(NSString*)url;
+-(id)initWithUrlByPresent:(NSString *)url;
 -(id)initWithRequest:(NSURLRequest*)request;
 
 @end
