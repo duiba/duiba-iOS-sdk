@@ -108,21 +108,26 @@
     }
 }
 
--(void)webViewDidFinishLoad:(UIWebView *)webView{
-    self.title=[webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-    [self.activity stopAnimating];
-}
+
 
 
 -(void)refreshParentPage:(NSURLRequest *)request{
     [self.webView loadRequest:request];
 }
--(void)webViewDidStartLoad:(UIWebView *)webView{
-    [self.activity startAnimating];
-}
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+#pragma mark WebViewDelegate
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    
+}
+-(void)webViewDidStartLoad:(UIWebView *)webView{
+    [self.activity startAnimating];
+}
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+    self.title=[webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    [self.activity stopAnimating];
 }
 
 @end

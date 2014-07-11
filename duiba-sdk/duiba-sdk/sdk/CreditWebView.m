@@ -59,13 +59,19 @@
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-    [self.webDelegate webView:webView didFailLoadWithError:error];
+    if(self.webDelegate !=nil && [self.webDelegate respondsToSelector:@selector(webView:didFailLoadWithError:)]){
+        [self.webDelegate webView:webView didFailLoadWithError:error];
+    }
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
-    [self.webDelegate webViewDidFinishLoad:webView];
+    if(self.webDelegate !=nil && [self.webDelegate respondsToSelector:@selector(webViewDidFinishLoad:)]){
+        [self.webDelegate webViewDidFinishLoad:webView];
+    }
 }
 -(void)webViewDidStartLoad:(UIWebView *)webView{
-    [self.webDelegate webViewDidStartLoad:webView];
+    if(self.webDelegate !=nil && [self.webDelegate respondsToSelector:@selector(webViewDidStartLoad:)]){
+        [self.webDelegate webViewDidStartLoad:webView];
+    }
 }
 
 
