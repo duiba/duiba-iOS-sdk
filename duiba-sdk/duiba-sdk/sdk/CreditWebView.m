@@ -23,6 +23,7 @@
 -(id)initWithFrame:(CGRect)frame{
     self=[super initWithFrame:frame];
     self.delegate=self;
+    self.scalesPageToFit=YES;
     return self;
 }
 -(id)initWithFrame:(CGRect)frame andUrl:(NSString *)url{
