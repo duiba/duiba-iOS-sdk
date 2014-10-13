@@ -11,6 +11,7 @@
 
 @interface CreditWebViewController : UIViewController
 
+@property(nonatomic,strong) NSString *needRefreshUrl;
 -(id)initWithUrl:(NSString*)url;
 -(id)initWithUrlByPresent:(NSString *)url;
 -(id)initWithRequest:(NSURLRequest*)request;
