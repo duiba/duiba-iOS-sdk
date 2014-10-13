@@ -72,7 +72,6 @@
 -(void)viewDidAppear:(BOOL)animated{
     self.webView.frame=self.view.bounds;
     if(self.needRefreshUrl!=nil){
-        NSLog(@"needRefreshUrl:%@",self.needRefreshUrl);
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.needRefreshUrl]]];
         self.needRefreshUrl=nil;
     }
