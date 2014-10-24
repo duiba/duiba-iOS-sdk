@@ -32,19 +32,27 @@
     return self;
 }
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-    NSString *url=[request.URL absoluteString];
+    NSMutableString *url=[[NSMutableString alloc]initWithString:[request.URL absoluteString]];
         if([url rangeOfString:@"dbnewopen"].location!=NSNotFound){
-            url=[url substringToIndex:url.length-9];
+            [url replaceCharactersInRange:[url rangeOfString:@"dbnewopen"] withString:@"none"];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"dbnewopen" object:nil userInfo:[NSDictionary dictionaryWithObject:url forKey:@"url"]];
             return NO;
         }else if([url rangeOfString:@"dbbackrefresh"].location!=NSNotFound){
-            
-            url=[url substringToIndex:url.length-13];
+            [url replaceCharactersInRange:[url rangeOfString:@"dbbackrefresh"] withString:@"none"];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"dbbackrefresh" object:nil userInfo:[NSDictionary dictionaryWithObject:url  forKey:@"url"]];
             return  NO;
+        
+        }else if([url rangeOfString:@"dbbackrootrefresh"].location!=NSNotFound){
+            [url replaceCharactersInRange:[url rangeOfString:@"dbbackrootrefresh"] withString:@"none"];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"dbbackrootrefresh" object:nil userInfo:[NSDictionary dictionaryWithObject:url forKey:@"url"]];
+            return NO;
         }else if([url rangeOfString:@"dbbackroot"].location!=NSNotFound){
-            url=[url substringToIndex:url.length-10];
+            [url replaceCharactersInRange:[url rangeOfString:@"dbbackroot"] withString:@"none"];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"dbbackroot" object:nil userInfo:[NSDictionary dictionaryWithObject:url forKey:@"url"]];
+            return NO;
+        }else if([url rangeOfString:@"dbback"].location!=NSNotFound){
+            [url replaceCharactersInRange:[url rangeOfString:@"dbback"] withString:@"none"];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"dbback" object:nil userInfo:[NSDictionary dictionaryWithObject:url forKey:@"url"]];
             return NO;
         }else{
             NSURL *requestURL =[request URL];

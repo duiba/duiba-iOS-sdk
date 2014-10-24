@@ -14,7 +14,6 @@
 @property(nonatomic,strong) NSURLRequest *request;
 @property(nonatomic,strong) CreditWebView *webView;
 
-@property(nonatomic,strong) NSString *needRefreshUrl;
 
 @property(nonatomic,strong) UIActivityIndicatorView *activity;
 
@@ -25,8 +24,6 @@
 -(id)initWithUrl:(NSString *)url{
     self=[super init];
     self.request=[NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldNewOpen:) name:@"dbnewopen" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldBackRoot:) name:@"dbbackroot" object:nil];
     return self;
 }
 -(id)initWithUrlByPresent:(NSString *)url{
@@ -39,42 +36,14 @@
     self=[super init];
     self.request=request;
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldBackRefresh:) name:@"dbbackrefresh" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldNewOpen:) name:@"dbnewopen" object:nil];
-    
+       
     return self;
 }
+
 -(void)dismiss{
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
--(void)shouldBackRoot:(NSNotificationCenter*)notification{
-    [self.navigationController popToViewController:self animated:YES];
-}
--(void)shouldNewOpen:(NSNotification*)notification{
-    UIViewController *vc=[self.navigationController.viewControllers lastObject];
-    if(vc==self){
-        CreditWebViewController *newvc=[[CreditWebViewController alloc]initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[notification.userInfo objectForKey:@"url"]]]];
-        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:nil action:nil];
-        [self.navigationItem setBackBarButtonItem:backItem];
-        
-        [self.navigationController pushViewController:newvc animated:YES];
-    }
-}
--(void)shouldBackRefresh:(NSNotification*) notification{
-    UIViewController *vc=[self.navigationController.viewControllers lastObject];
-    NSInteger count=[self.navigationController.viewControllers count];
-    
-    if(count>1){
-        CreditWebViewController *second=[self.navigationController.viewControllers objectAtIndex:count-2];
-        if(second==self){
-            self.needRefreshUrl=[notification.userInfo objectForKey:@"url"];
-        }
-    }
-    
-    if(vc==self){
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
+
 
 - (void)viewDidLoad
 {
@@ -87,12 +56,12 @@
     self.title=@"加载中";
     
     
-    self.activity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];//指定进度轮的大小
+    self.activity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];//指定进度轮的大小
     [self.activity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
     [self.activity hidesWhenStopped];
     [self.activity setCenter:self.view.center];//指定进度轮中心点
     
-    [self.activity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];//设置进度轮显示类型
+    [self.activity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhite];//设置进度轮显示类型
     self.activity.color=[UIColor blackColor];
     
     [self.view addSubview:self.activity];
