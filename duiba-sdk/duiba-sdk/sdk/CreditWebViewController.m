@@ -19,7 +19,10 @@
 
 @end
 
+static UINavigationController *navController;
+
 @implementation CreditWebViewController
+
 
 -(id)initWithUrl:(NSString *)url{
     self=[super init];
@@ -47,6 +50,14 @@
 
 - (void)viewDidLoad
 {
+    if(navController==nil){
+        navController=self.navigationController;
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldNewOpen:) name:@"dbnewopen" object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldBackRefresh:) name:@"dbbackrefresh" object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldBack:) name:@"dbback" object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldBackRoot:) name:@"dbbackroot" object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldBackRootRefresh:) name:@"dbbackrootrefresh" object:nil];
+    }
     [super viewDidLoad];
 	self.webView=[[CreditWebView alloc]initWithFrame:self.view.bounds andUrl:[[self.request URL] absoluteString]];
     [self.view addSubview:self.webView];
@@ -98,6 +109,67 @@
     self.title=[webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     [self.activity stopAnimating];
 }
+
+#pragma mark 5 activite
+
+
+-(void)shouldNewOpen:(NSNotification*)notification{
+    UIViewController *last=[navController.viewControllers lastObject];
+    
+    CreditWebViewController *newvc=[[CreditWebViewController alloc]initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[notification.userInfo objectForKey:@"url"]]]];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:nil action:nil];
+    [last.navigationItem setBackBarButtonItem:backItem];
+    
+    [navController pushViewController:newvc animated:YES];
+}
+-(void)shouldBackRefresh:(NSNotification*) notification{
+    NSInteger count=[navController.viewControllers count];
+    
+    
+    if(count>1){
+        CreditWebViewController *second=[navController.viewControllers objectAtIndex:count-2];
+        second.needRefreshUrl=[notification.userInfo objectForKey:@"url"];
+    }
+    
+    [navController popViewControllerAnimated:YES];
+}
+-(void)shouldBack:(NSNotification*)notification{
+    [navController popViewControllerAnimated:YES];
+}
+-(void)shouldBackRoot:(NSNotification*)notification{
+    NSInteger count=navController.viewControllers.count;
+    CreditWebViewController *rootVC=nil;
+    for(int i=0;i<count;i++){
+        UIViewController *vc=[navController.viewControllers objectAtIndex:i];
+        if([vc isKindOfClass:[CreditWebViewController class]]){
+            rootVC=(CreditWebViewController*)vc;
+            break;
+        }
+    }
+    if(rootVC!=nil){
+        [navController popToViewController:rootVC animated:YES];
+    }else{
+        [navController popViewControllerAnimated:YES];
+    }
+}
+-(void)shouldBackRootRefresh:(NSNotification*)notification{
+    NSInteger count=navController.viewControllers.count;
+    CreditWebViewController *rootVC=nil;
+    for(int i=0;i<count;i++){
+        UIViewController *vc=[navController.viewControllers objectAtIndex:i];
+        if([vc isKindOfClass:[CreditWebViewController class]]){
+            rootVC=(CreditWebViewController*)vc;
+            break;
+        }
+    }
+    if(rootVC!=nil){
+        rootVC.needRefreshUrl=[notification.userInfo objectForKey:@"url"];
+        [navController popToViewController:rootVC animated:YES];
+    }else{
+        [navController popViewControllerAnimated:YES];
+    }
+}
+
 
 @end
  
