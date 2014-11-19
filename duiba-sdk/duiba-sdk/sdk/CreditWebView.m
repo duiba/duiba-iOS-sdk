@@ -54,12 +54,12 @@
             [url replaceCharactersInRange:[url rangeOfString:@"dbback"] withString:@"none"];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"dbback" object:nil userInfo:[NSDictionary dictionaryWithObject:url forKey:@"url"]];
             return NO;
-        }else{
-            NSURL *requestURL =[request URL];
-            NSURL *current=[NSURL URLWithString:self.url];
-            if(![[requestURL host]hasSuffix:@"duiba.com.cn"] && ![[requestURL host]isEqualToString:[current host]]){
-                return ![ [ UIApplication sharedApplication ] openURL:requestURL ];
-            }
+//        }else{
+//            NSURL *requestURL =[request URL];
+//            NSURL *current=[NSURL URLWithString:self.url];
+//            if(![[requestURL host]hasSuffix:@"duiba.com.cn"] && ![[requestURL host]isEqualToString:[current host]]){
+//                return ![ [ UIApplication sharedApplication ] openURL:requestURL ];
+//            }
             
             
         }
