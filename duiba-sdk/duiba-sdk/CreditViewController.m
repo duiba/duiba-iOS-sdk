@@ -80,7 +80,31 @@
     [self presentViewController:nav animated:YES completion:nil];
     */
     
+    //添加分享按钮的监听
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onDuibaShareClick:) name:@"duiba-share-click" object:nil];
+    //添加登录按钮的监听
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onDuibaLoginClick:) name:@"duiba-login-click" object:nil];
     
+}
+//当兑吧页面内点击登录时，会调用此处函数
+//请在此处弹出登录层，进行登录处理
+//登录成功后，请从dict拿到当前页面currentUrl
+//让服务器端重新生成一次自动登录地址，并附带redirect=currentUrl参数
+//使用新生成的自动登录地址，让webView重新进行一次加载
+-(void)onDuibaLoginClick:(NSNotification *)notify{
+    NSDictionary *dict=notify.userInfo;
+    NSLog(@"%@",[dict objectForKey:@"currentUrl"]);
+    NSLog(@"webView:%@",[dict objectForKey:@"webView"]);
+    UIWebView *webView=[dict objectForKey:@"webView"];
+    //登录成功后，刷新当前页面
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://baidu.com"]]];
+}
+-(void)onDuibaShareClick:(NSNotification *)notify{
+    NSDictionary *dict=notify.userInfo;
+    NSLog(@"%@",[dict objectForKey:@"shareUrl"]);//分享url
+    NSLog(@"%@",[dict objectForKey:@"shareTitle"]);//标题
+    NSLog(@"%@",[dict objectForKey:@"shareThumbnail"]);//缩略图
+    NSLog(@"%@",[dict objectForKey:@"shareSubtitle"]);//副标题
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{

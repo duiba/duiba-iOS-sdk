@@ -33,6 +33,21 @@
 }
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     NSMutableString *url=[[NSMutableString alloc]initWithString:[request.URL absoluteString]];
+    
+        NSArray *urlComps = [url componentsSeparatedByString:@"://"];
+        if([urlComps count] && [[urlComps objectAtIndex:0] isEqualToString:@"objc"]){
+            if([[urlComps objectAtIndex:1] hasPrefix:@"duiba/"]){
+                NSArray *d=[[urlComps objectAtIndex:1] componentsSeparatedByString:@"/"];
+                if(d.count==2 && [d[1] isEqualToString:@"login"]){
+                    NSMutableDictionary *dict=[NSMutableDictionary dictionary];
+                    [dict setObject:webView.request.URL.absoluteString forKey:@"currentUrl"];
+                    [dict setObject:webView forKey:@"webView"];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"duiba-login-click" object:self userInfo:dict];
+                    return NO;
+                }
+            }
+        }
+    
         if([url rangeOfString:@"dbnewopen"].location!=NSNotFound){
             [url replaceCharactersInRange:[url rangeOfString:@"dbnewopen"] withString:@"none"];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"dbnewopen" object:nil userInfo:[NSDictionary dictionaryWithObject:url forKey:@"url"]];
@@ -54,12 +69,6 @@
             [url replaceCharactersInRange:[url rangeOfString:@"dbback"] withString:@"none"];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"dbback" object:nil userInfo:[NSDictionary dictionaryWithObject:url forKey:@"url"]];
             return NO;
-//        }else{
-//            NSURL *requestURL =[request URL];
-//            NSURL *current=[NSURL URLWithString:self.url];
-//            if(![[requestURL host]hasSuffix:@"duiba.com.cn"] && ![[requestURL host]isEqualToString:[current host]]){
-//                return ![ [ UIApplication sharedApplication ] openURL:requestURL ];
-//            }
             
             
         }
