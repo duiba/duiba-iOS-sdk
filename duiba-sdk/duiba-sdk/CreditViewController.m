@@ -9,7 +9,9 @@
 #import "CreditViewController.h"
 #import "CreditWebViewController.h"
 #import "CreditNavigationController.h"
-@interface CreditViewController ()
+@interface CreditViewController ()<UIAlertViewDelegate>
+
+@property (nonatomic,strong) NSDictionary *loginData;
 
 @end
 
@@ -66,7 +68,7 @@
     //  如果已经有UINavigationContoller了，就 创建出一个 CreditWebViewController 然后 push 进去
     //
     //
-    CreditWebViewController *web=[[CreditWebViewController alloc]initWithUrl:@"http://www.duiba.com.cn/test/demoRedirectSAdfjosfdjdsa"];//实际中需要改为开发者服务器的地址，开发者服务器再重定向到一个带签名的自动登录地址
+    CreditWebViewController *web=[[CreditWebViewController alloc]initWithUrl:@"http://192.168.1.193:8080/cpage/test"];//实际中需要改为开发者服务器的地址，开发者服务器再重定向到一个带签名的自动登录地址
     [self.navigationController pushViewController:web animated:YES];
     
     //
@@ -92,12 +94,14 @@
 //让服务器端重新生成一次自动登录地址，并附带redirect=currentUrl参数
 //使用新生成的自动登录地址，让webView重新进行一次加载
 -(void)onDuibaLoginClick:(NSNotification *)notify{
-    NSDictionary *dict=notify.userInfo;
-    NSLog(@"%@",[dict objectForKey:@"currentUrl"]);
-    NSLog(@"webView:%@",[dict objectForKey:@"webView"]);
-    UIWebView *webView=[dict objectForKey:@"webView"];
-    //登录成功后，刷新当前页面
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://baidu.com"]]];
+    self.loginData=notify.userInfo;
+   
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"请登陆" message:@"作为演示，登陆成功后将跳转至百度\n实际中请跳转正确的地址" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"登陆", nil];
+    alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+    [alert show];
+    
+    
+    
 }
 -(void)onDuibaShareClick:(NSNotification *)notify{
     NSDictionary *dict=notify.userInfo;
@@ -105,6 +109,17 @@
     NSLog(@"%@",[dict objectForKey:@"shareTitle"]);//标题
     NSLog(@"%@",[dict objectForKey:@"shareThumbnail"]);//缩略图
     NSLog(@"%@",[dict objectForKey:@"shareSubtitle"]);//副标题
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if(buttonIndex==1){
+        NSLog(@"currentUrl=%@",[self.loginData objectForKey:@"currentUrl"]);
+        CreditWebView *webView=[self.loginData objectForKey:@"webView"];
+        
+        //登录成功后，刷新当前页面
+        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://baidu.com"]]];
+    }
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
