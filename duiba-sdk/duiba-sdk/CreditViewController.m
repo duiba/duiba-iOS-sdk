@@ -68,7 +68,7 @@
     //  如果已经有UINavigationContoller了，就 创建出一个 CreditWebViewController 然后 push 进去
     //
     //
-    CreditWebViewController *web=[[CreditWebViewController alloc]initWithUrl:@"http://192.168.1.193:8080/cpage/test"];//实际中需要改为开发者服务器的地址，开发者服务器再重定向到一个带签名的自动登录地址
+    CreditWebViewController *web=[[CreditWebViewController alloc]initWithUrl:@"http://www.duiba.com.cn/test/demoRedirectNotLogin"];//实际中需要改为开发者服务器的地址，开发者服务器再重定向到一个带签名的自动登录地址
     [self.navigationController pushViewController:web animated:YES];
     
     //
@@ -105,10 +105,17 @@
 }
 -(void)onDuibaShareClick:(NSNotification *)notify{
     NSDictionary *dict=notify.userInfo;
-    NSLog(@"%@",[dict objectForKey:@"shareUrl"]);//分享url
-    NSLog(@"%@",[dict objectForKey:@"shareTitle"]);//标题
-    NSLog(@"%@",[dict objectForKey:@"shareThumbnail"]);//缩略图
-    NSLog(@"%@",[dict objectForKey:@"shareSubtitle"]);//副标题
+    NSString *shareUrl=[dict objectForKey:@"shareUrl"];//分享url
+    NSString *shareTitle=[dict objectForKey:@"shareTitle"];//标题
+    NSString *shareThumbnail=[dict objectForKey:@"shareThumbnail"];//缩略图
+    NSString *shareSubTitle=[dict objectForKey:@"shareSubtitle"];//副标题
+    
+    NSString *message=@"";
+    message=[message stringByAppendingFormat:@"分享地址:%@ \n 分享标题:%@ \n分享图:%@ \n分享副标题:%@",shareUrl,shareTitle,shareThumbnail,shareSubTitle];
+  
+    
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"捕获到分享点击" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alert show];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
