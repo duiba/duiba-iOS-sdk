@@ -13,6 +13,12 @@
     
 @property(nonatomic,strong) NSURLRequest *request;
 @property(nonatomic,strong) CreditWebView *webView;
+@property(nonatomic,strong) NSString *shareUrl;
+@property(nonatomic,strong) NSString *shareTitle;
+@property(nonatomic,strong) NSString *shareSubtitle;
+@property(nonatomic,strong) NSString *shareThumbnail;
+
+@property(nonatomic,strong) UIBarButtonItem *shareButton;
 
 
 @property(nonatomic,strong) UIActivityIndicatorView *activity;
@@ -107,7 +113,42 @@ static UINavigationController *navController;
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     self.title=[webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    
+    NSString *content=[webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('duiba-share-url').getAttribute('content');"];
+    if(content.length>0){
+        NSArray *d=[content componentsSeparatedByString:@"|"];
+        if(d.count==4){
+            self.shareUrl=[d objectAtIndex:0];
+            self.shareThumbnail=[d objectAtIndex:1];
+            self.shareTitle=[d objectAtIndex:2];
+            self.shareSubtitle=[d objectAtIndex:3];
+            
+            if(self.shareButton==nil){
+                self.shareButton=[[UIBarButtonItem alloc] initWithTitle:@"分享" style:UIBarButtonItemStyleBordered target:self action:@selector(onShareClick)];
+            }
+            
+            if(self.navigationItem.rightBarButtonItem==nil){
+                self.navigationItem.rightBarButtonItem=self.shareButton;
+            }
+        }
+    }else{
+        if(self.shareButton!= nil && self.shareButton==self.navigationItem.rightBarButtonItem){
+            self.navigationItem.rightBarButtonItem=nil;
+        }
+    }
     [self.activity stopAnimating];
+}
+
+
+
+-(void)onShareClick{
+    NSMutableDictionary *dict=[NSMutableDictionary dictionary];
+    [dict setObject:self.shareUrl forKey:@"shareUrl"];
+    [dict setObject:self.shareThumbnail forKey:@"shareThumbnail"];
+    [dict setObject:self.shareTitle forKey:@"shareTitle"];
+    [dict setObject:self.shareSubtitle forKey:@"shareSubtitle"];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"duiba-share-click" object:self userInfo:dict];
 }
 
 #pragma mark 5 activite

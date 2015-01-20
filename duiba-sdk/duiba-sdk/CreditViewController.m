@@ -9,7 +9,9 @@
 #import "CreditViewController.h"
 #import "CreditWebViewController.h"
 #import "CreditNavigationController.h"
-@interface CreditViewController ()
+@interface CreditViewController ()<UIAlertViewDelegate>
+
+@property (nonatomic,strong) NSDictionary *loginData;
 
 @end
 
@@ -20,6 +22,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.title=@"个人中心";
+    
+    //添加分享按钮的监听
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onDuibaShareClick:) name:@"duiba-share-click" object:nil];
+    //添加登录按钮的监听
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onDuibaLoginClick:) name:@"duiba-login-click" object:nil];
 }
 -(void)viewDidAppear:(BOOL)animated{
     
@@ -81,6 +88,47 @@
     */
     
     
+    
+}
+//当兑吧页面内点击登录时，会调用此处函数
+//请在此处弹出登录层，进行登录处理
+//登录成功后，请从dict拿到当前页面currentUrl
+//让服务器端重新生成一次自动登录地址，并附带redirect=currentUrl参数
+//使用新生成的自动登录地址，让webView重新进行一次加载
+-(void)onDuibaLoginClick:(NSNotification *)notify{
+    self.loginData=notify.userInfo;
+   
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"请登陆" message:@"作为演示，登陆成功后将跳转至百度\n实际中请跳转正确的地址" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"登陆", nil];
+    alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+    [alert show];
+    
+    
+    
+}
+-(void)onDuibaShareClick:(NSNotification *)notify{
+    NSDictionary *dict=notify.userInfo;
+    NSString *shareUrl=[dict objectForKey:@"shareUrl"];//分享url
+    NSString *shareTitle=[dict objectForKey:@"shareTitle"];//标题
+    NSString *shareThumbnail=[dict objectForKey:@"shareThumbnail"];//缩略图
+    NSString *shareSubTitle=[dict objectForKey:@"shareSubtitle"];//副标题
+    
+    NSString *message=@"";
+    message=[message stringByAppendingFormat:@"分享地址:%@ \n 分享标题:%@ \n分享图:%@ \n分享副标题:%@",shareUrl,shareTitle,shareThumbnail,shareSubTitle];
+  
+    
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"捕获到分享点击" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if(buttonIndex==1){
+        NSLog(@"currentUrl=%@",[self.loginData objectForKey:@"currentUrl"]);
+        CreditWebView *webView=[self.loginData objectForKey:@"webView"];
+        
+        //登录成功后，刷新当前页面
+        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://baidu.com"]]];
+    }
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
