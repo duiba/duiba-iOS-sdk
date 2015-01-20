@@ -22,6 +22,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.title=@"个人中心";
+    
+    //添加分享按钮的监听
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onDuibaShareClick:) name:@"duiba-share-click" object:nil];
+    //添加登录按钮的监听
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onDuibaLoginClick:) name:@"duiba-login-click" object:nil];
 }
 -(void)viewDidAppear:(BOOL)animated{
     
@@ -68,7 +73,7 @@
     //  如果已经有UINavigationContoller了，就 创建出一个 CreditWebViewController 然后 push 进去
     //
     //
-    CreditWebViewController *web=[[CreditWebViewController alloc]initWithUrl:@"http://www.duiba.com.cn/test/demoRedirectNotLogin"];//实际中需要改为开发者服务器的地址，开发者服务器再重定向到一个带签名的自动登录地址
+    CreditWebViewController *web=[[CreditWebViewController alloc]initWithUrl:@"http://www.duiba.com.cn/test/demoRedirectSAdfjosfdjdsa"];//实际中需要改为开发者服务器的地址，开发者服务器再重定向到一个带签名的自动登录地址
     [self.navigationController pushViewController:web animated:YES];
     
     //
@@ -82,10 +87,7 @@
     [self presentViewController:nav animated:YES completion:nil];
     */
     
-    //添加分享按钮的监听
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onDuibaShareClick:) name:@"duiba-share-click" object:nil];
-    //添加登录按钮的监听
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onDuibaLoginClick:) name:@"duiba-login-click" object:nil];
+    
     
 }
 //当兑吧页面内点击登录时，会调用此处函数
