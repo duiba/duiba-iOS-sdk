@@ -8,6 +8,7 @@
 
 #import "CreditWebViewController.h"
 #import "CreditWebView.h"
+#import "CreditConstant.h"
 
 @interface CreditWebViewController ()<UIWebViewDelegate>
     
@@ -26,6 +27,7 @@
 @end
 
 static UINavigationController *navController;
+static NSString *originUserAgent;
 
 @implementation CreditWebViewController
 
@@ -53,7 +55,17 @@ static UINavigationController *navController;
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
-
+-(void)viewWillDisappear:(BOOL)animated{
+    [[NSUserDefaults standardUserDefaults]registerDefaults:@{@"UserAgent":originUserAgent}];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    if(originUserAgent==nil){
+        UIWebView* webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+        originUserAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+    }
+    NSString *ua=[originUserAgent stringByAppendingFormat:@" Duiba/%@",DUIBA_VERSION];
+    [[NSUserDefaults standardUserDefaults]registerDefaults:@{@"UserAgent":ua}];
+}
 - (void)viewDidLoad
 {
     if(navController==nil){

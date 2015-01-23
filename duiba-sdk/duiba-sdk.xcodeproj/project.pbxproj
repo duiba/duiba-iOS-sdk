@@ -40,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E9C988B1A7245FE00168D2C /* CreditConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CreditConstant.h; path = sdk/CreditConstant.h; sourceTree = "<group>"; };
 		3EF98D92194AD83300634C41 /* duiba-sdk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "duiba-sdk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EF98D95194AD83300634C41 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3EF98D97194AD83300634C41 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -178,6 +179,7 @@
 				3EF98DCE194AD88600634C41 /* CreditWebView.m */,
 				3EF98DCF194AD88600634C41 /* CreditWebViewController.h */,
 				3EF98DD0194AD88600634C41 /* CreditWebViewController.m */,
+				3E9C988B1A7245FE00168D2C /* CreditConstant.h */,
 			);
 			name = sdk;
 			sourceTree = "<group>";
