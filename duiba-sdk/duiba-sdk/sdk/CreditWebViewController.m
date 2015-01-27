@@ -76,6 +76,8 @@ static NSString *originUserAgent;
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldBackRoot:) name:@"dbbackroot" object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldBackRootRefresh:) name:@"dbbackrootrefresh" object:nil];
     }
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(setRefreshCurrentUrl:) name:@"duiba-autologin-visit" object:nil];
+    
     [super viewDidLoad];
 	self.webView=[[CreditWebView alloc]initWithFrame:self.view.bounds andUrl:[[self.request URL] absoluteString]];
     [self.view addSubview:self.webView];
@@ -107,7 +109,11 @@ static NSString *originUserAgent;
 }
 
 
-
+-(void)setRefreshCurrentUrl:(NSNotification*)notify{
+    if([notify.userInfo objectForKey:@"webView"]!=self.webView){
+        self.needRefreshUrl=self.webView.request.URL.absoluteString;
+    }
+}
 
 -(void)refreshParentPage:(NSURLRequest *)request{
     [self.webView loadRequest:request];
