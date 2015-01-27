@@ -33,7 +33,10 @@
 }
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     NSMutableString *url=[[NSMutableString alloc]initWithString:[request.URL absoluteString]];
-    
+    if([url rangeOfString:@"autoLogin/autologin" options:NSCaseInsensitiveSearch].location!=NSNotFound){
+        NSDictionary *dict=[NSDictionary dictionaryWithObject:self forKey:@"webView"];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"duiba-autologin-visit" object:nil userInfo:dict];
+    }
         NSArray *urlComps = [url componentsSeparatedByString:@"://"];
         if([urlComps count] && [[urlComps objectAtIndex:0] isEqualToString:@"objc"]){
             if([[urlComps objectAtIndex:1] hasPrefix:@"duiba/"]){
