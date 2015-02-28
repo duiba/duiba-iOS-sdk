@@ -11,7 +11,7 @@
 
 
 @interface CreditWebView : UIWebView<UIWebViewDelegate>
-@property (nonatomic,strong) id<UIWebViewDelegate> webDelegate;
+@property (nonatomic,assign) id<UIWebViewDelegate> webDelegate;
 
 -(id)initWithFrame:(CGRect)frame andUrl:(NSString*)url;
 @end
