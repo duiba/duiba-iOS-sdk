@@ -121,6 +121,21 @@ static NSString *originUserAgent;
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter]removeObserver:self];
+    if(navController!=nil){
+        NSInteger count=navController.viewControllers.count;
+        BOOL containCredit=NO;
+        for(int i=0;i<count;i++){
+            UIViewController *vc=[navController.viewControllers objectAtIndex:i];
+            if([vc isKindOfClass:[CreditWebViewController class]]){
+                containCredit=YES;
+                break;
+            }
+        }
+        if(!containCredit){
+            navController=nil;
+        }
+    }
+    
 }
 #pragma mark WebViewDelegate
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
