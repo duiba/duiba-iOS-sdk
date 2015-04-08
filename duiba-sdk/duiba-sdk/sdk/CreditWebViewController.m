@@ -26,6 +26,7 @@
 
 @end
 
+static BOOL byPresent=NO;
 static UINavigationController *navController;
 static NSString *originUserAgent;
 
@@ -35,12 +36,23 @@ static NSString *originUserAgent;
 -(id)initWithUrl:(NSString *)url{
     self=[super init];
     self.request=[NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    
+    
     return self;
 }
 -(id)initWithUrlByPresent:(NSString *)url{
     self=[self initWithUrl:url];
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(dismiss)];
     self.navigationItem.leftBarButtonItem=leftButton;
+    byPresent=YES;
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldNewOpen:) name:@"dbnewopen" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldBackRefresh:) name:@"dbbackrefresh" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldBack:) name:@"dbback" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldBackRoot:) name:@"dbbackroot" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldBackRootRefresh:) name:@"dbbackrootrefresh" object:nil];
+    
     return self;
 }
 -(id)initWithRequest:(NSURLRequest *)request{
@@ -68,7 +80,7 @@ static NSString *originUserAgent;
 }
 - (void)viewDidLoad
 {
-    if(navController==nil){
+    if(!byPresent && navController==nil){
         navController=self.navigationController;
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldNewOpen:) name:@"dbnewopen" object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldBackRefresh:) name:@"dbbackrefresh" object:nil];
@@ -76,6 +88,7 @@ static NSString *originUserAgent;
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldBackRoot:) name:@"dbbackroot" object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldBackRootRefresh:) name:@"dbbackrootrefresh" object:nil];
     }
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(setRefreshCurrentUrl:) name:@"duiba-autologin-visit" object:nil];
     
     [super viewDidLoad];
@@ -121,7 +134,7 @@ static NSString *originUserAgent;
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter]removeObserver:self];
-    if(navController!=nil){
+    if(navController!=nil && !byPresent){
         NSInteger count=navController.viewControllers.count;
         BOOL containCredit=NO;
         for(int i=0;i<count;i++){
@@ -184,53 +197,60 @@ static NSString *originUserAgent;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"duiba-share-click" object:self userInfo:dict];
 }
 
+-(UINavigationController*)getNavCon{
+    if(byPresent){
+        return self.navigationController;
+    }
+    return navController;
+}
+
 #pragma mark 5 activite
 
 
 -(void)shouldNewOpen:(NSNotification*)notification{
-    UIViewController *last=[navController.viewControllers lastObject];
+    UIViewController *last=[[self getNavCon].viewControllers lastObject];
     
     CreditWebViewController *newvc=[[CreditWebViewController alloc]initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[notification.userInfo objectForKey:@"url"]]]];
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:nil action:nil];
     [last.navigationItem setBackBarButtonItem:backItem];
     
-    [navController pushViewController:newvc animated:YES];
+    [[self getNavCon] pushViewController:newvc animated:YES];
 }
 -(void)shouldBackRefresh:(NSNotification*) notification{
-    NSInteger count=[navController.viewControllers count];
+    NSInteger count=[[self getNavCon].viewControllers count];
     
     
     if(count>1){
-        CreditWebViewController *second=[navController.viewControllers objectAtIndex:count-2];
+        CreditWebViewController *second=[[self getNavCon].viewControllers objectAtIndex:count-2];
         second.needRefreshUrl=[notification.userInfo objectForKey:@"url"];
     }
     
-    [navController popViewControllerAnimated:YES];
+    [[self getNavCon] popViewControllerAnimated:YES];
 }
 -(void)shouldBack:(NSNotification*)notification{
-    [navController popViewControllerAnimated:YES];
+    [[self getNavCon] popViewControllerAnimated:YES];
 }
 -(void)shouldBackRoot:(NSNotification*)notification{
-    NSInteger count=navController.viewControllers.count;
+    NSInteger count=[self getNavCon].viewControllers.count;
     CreditWebViewController *rootVC=nil;
     for(int i=0;i<count;i++){
-        UIViewController *vc=[navController.viewControllers objectAtIndex:i];
+        UIViewController *vc=[[self getNavCon].viewControllers objectAtIndex:i];
         if([vc isKindOfClass:[CreditWebViewController class]]){
             rootVC=(CreditWebViewController*)vc;
             break;
         }
     }
     if(rootVC!=nil){
-        [navController popToViewController:rootVC animated:YES];
+        [[self getNavCon] popToViewController:rootVC animated:YES];
     }else{
-        [navController popViewControllerAnimated:YES];
+        [[self getNavCon] popViewControllerAnimated:YES];
     }
 }
 -(void)shouldBackRootRefresh:(NSNotification*)notification{
-    NSInteger count=navController.viewControllers.count;
+    NSInteger count=[self getNavCon].viewControllers.count;
     CreditWebViewController *rootVC=nil;
     for(int i=0;i<count;i++){
-        UIViewController *vc=[navController.viewControllers objectAtIndex:i];
+        UIViewController *vc=[[self getNavCon].viewControllers objectAtIndex:i];
         if([vc isKindOfClass:[CreditWebViewController class]]){
             rootVC=(CreditWebViewController*)vc;
             break;
@@ -238,9 +258,9 @@ static NSString *originUserAgent;
     }
     if(rootVC!=nil){
         rootVC.needRefreshUrl=[notification.userInfo objectForKey:@"url"];
-        [navController popToViewController:rootVC animated:YES];
+        [[self getNavCon] popToViewController:rootVC animated:YES];
     }else{
-        [navController popViewControllerAnimated:YES];
+        [[self getNavCon] popViewControllerAnimated:YES];
     }
 }
 
